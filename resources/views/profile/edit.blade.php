@@ -9,63 +9,7 @@
 
     <div class="container-fluid mt--7">
         <div class="row">
-            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-                <div class="card card-profile shadow">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 order-lg-2">
-                            <div class="card-profile-image">
-                                <a href="#">
-                                    <img src="{{ asset('argon') }}/img/theme/team-4-800x800.jpg" class="rounded-circle">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                        <div class="d-flex justify-content-between">
-                            <a href="#" class="btn btn-sm btn-info mr-4">{{ __('Connect') }}</a>
-                            <a href="#" class="btn btn-sm btn-default float-right">{{ __('Message') }}</a>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0 pt-md-4">
-                        <div class="row">
-                            <div class="col">
-                                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                    <div>
-                                        <span class="heading">22</span>
-                                        <span class="description">{{ __('Friends') }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="heading">10</span>
-                                        <span class="description">{{ __('Photos') }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="heading">89</span>
-                                        <span class="description">{{ __('Comments') }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h3>
-                                {{ auth()->user()->name }}<span class="font-weight-light">, 27</span>
-                            </h3>
-                            <div class="h5 font-weight-300">
-                                <i class="ni location_pin mr-2"></i>{{ __('Bucharest, Romania') }}
-                            </div>
-                            <div class="h5 mt-4">
-                                <i class="ni business_briefcase-24 mr-2"></i>{{ __('Solution Manager - Creative Tim Officer') }}
-                            </div>
-                            <div>
-                                <i class="ni education_hat mr-2"></i>{{ __('University of Computer Science') }}
-                            </div>
-                            <hr class="my-4" />
-                            <p>{{ __('Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.') }}</p>
-                            <a href="#">{{ __('Show more') }}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-8 order-xl-1">
+            <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
@@ -73,7 +17,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
+                        <form method="post" action="{{ route('profile.update') }}">
                             @csrf
                             @method('put')
 
@@ -90,23 +34,83 @@
 
 
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required autofocus>
+                                <div class="row">
+                                    <div class="col-md-6 form-group{{ $errors->has('first_name') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-first_name">First Name</label>
+                                        <input type="text" name="first_name" id="input-first_name" class="form-control form-control-alternative{{ $errors->has('first_name') ? ' is-invalid' : '' }}" placeholder="First name" value="{{ old('first_name', auth()->user()->first_name) }}" required>
 
-                                    @if ($errors->has('name'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
+                                        @if ($errors->has('first_name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6 form-group{{ $errors->has('last_name') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-last_name">Last Name</label>
+                                        <input type="text" name="last_name" id="input-last_name" class="form-control form-control-alternative{{ $errors->has('last_name') ? ' is-invalid' : '' }}" placeholder="Last name" value="{{ old('last_name', auth()->user()->last_name) }}" required>
+
+                                        @if ($errors->has('last_name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Email') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
+                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Email" value="{{ old('email', auth()->user()->email) }}" required>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('birth_date') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-birthday">Birth Date</label>
+                                    <input type="date" name="birth_date" id="input-birthday" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Birth date" value="{{ old('birth_date', auth()->user()->birth_date) }}" required>
+                                    @if ($errors->has('birth_date'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('birth_date') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('district_name') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-district">District</label>
+                                    <input type="text" name="district_name" id="input-district" class="form-control form-control-alternative{{ $errors->has('district_name') ? ' is-invalid' : '' }}" placeholder="District name" value="{{ old('district_name', auth()->user()->district_name) }}" required>
+                                    @if ($errors->has('district_name'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('district_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('reg_date') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-reg-date">Registration Date</label>
+                                    <input type="date" name="reg_date" id="input-reg-date" class="form-control form-control-alternative{{ $errors->has('reg_date') ? ' is-invalid' : '' }}" placeholder="Registration date" value="{{ old('reg_date', auth()->user()->reg_date) }}" required>
+                                    @if ($errors->has('reg_date'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('reg_date') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('last_visit') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-last-visit">Last Visit</label>
+                                    <input type="date" name="last_visit" id="input-last-visit" class="form-control form-control-alternative{{ $errors->has('last_visit') ? ' is-invalid' : '' }}" placeholder="Registration date" value="{{ old('last_visit', auth()->user()->last_visit) }}" required>
+                                    @if ($errors->has('last_visit'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('last_visit') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('is_active') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-is-active">Status</label>
+                                    <select name="is_active" class="form-control form-control-alternative" id="input-is-active">
+                                        <option value="1" {{auth()->user()->is_active?'selected':''}}>Active</option>
+                                        <option value="0" {{!(auth()->user()->is_active)?'selected':''}}>Disable</option>
+                                    </select>
+                                    @if ($errors->has('is_active'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('is_active') }}</strong>
                                         </span>
                                     @endif
                                 </div>

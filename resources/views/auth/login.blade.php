@@ -24,18 +24,17 @@
                             <small>
                                     Create new account OR Sign in with these credentials:
                                     <br>
-                                    Username <strong>admin@argon.com</strong> Password: <strong>secret</strong>
+                                    Username <strong>admin@admin.com</strong> Password: <strong>password</strong>
                             </small>
                         </div>
                         <form role="form" method="POST" action="{{ route('login') }}">
                             @csrf
-
                             <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}" value="admin@argon.com" required autofocus>
+                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}" required autofocus>
                                 </div>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -48,7 +47,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" value="secret" required>
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" required>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">

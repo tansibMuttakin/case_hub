@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -15,7 +17,8 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('profile.edit');
+        $user = User::find(auth()->id());
+        return view('profile.edit')->with('user', $user);
     }
 
     /**
@@ -24,31 +27,43 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\ProfileRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ProfileRequest $request)
+    public function update(Request $request)
     {
-        if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_profile' => __('You are not allowed to change data for a default user.')]);
-        }
+        $validated = $request->validate([
+            'first_name' =>'required|string',
+            'last_name'=>'required|string',
+            'email' =>'required',
+            'birth_date' =>'required|date',
+            'district_name'=>'required|string',
+            'reg_date' =>'required|date',
+            'last_visit' =>'required|date',
+            'is_active' => 'required'
 
-        auth()->user()->update($request->all());
 
-        return back()->withStatus(__('Profile successfully updated.'));
+        ]);
+        $user = User::find(auth()->id());
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->birth_date = $request->birth_date;
+        $user->email = $request->email;
+        $user->district_name = $request->district_name;
+        $user->reg_date = $request->reg_date;
+        $user->last_visit = $request->last_visit;
+        $user->is_active = $request->is_active;
+        $user->save();
+
+        return back()->with('success','Profile Updated Successfully');
     }
 
-    /**
-     * Change the password
-     *
-     * @param  \App\Http\Requests\PasswordRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function password(PasswordRequest $request)
+    public function password(Request $request)
     {
-        if (auth()->user()->id == 1) {
-            return back()->withErrors(['not_allow_password' => __('You are not allowed to change the password for a default user.')]);
-        }
-
+        $validated = $request->validate([
+            'old_password'=>'required|string|current_password',
+            'password_confirmation'=>'required|string',
+            'password' =>'required|string|confirmed'
+        ]);
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
-        return back()->withPasswordStatus(__('Password successfully updated.'));
+        return back()->with('success','Password Updated Successfully');
     }
 }

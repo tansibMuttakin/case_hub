@@ -23,8 +23,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+	Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+	Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
 	Route::get('map', function () {return view('pages.maps');})->name('map');
 	Route::get('icons', function () {return view('pages.icons');})->name('icons'); 

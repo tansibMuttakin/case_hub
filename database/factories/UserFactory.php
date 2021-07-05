@@ -23,8 +23,16 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),
+            'phone'=> $this->faker->phoneNumber(),
+            'birth_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'district_name'=>'Dhaka',
+            'reg_date'=> $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'last_visit'=> $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'is_active'=>random_int(0,1),
+            'is_admin'=>0,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
