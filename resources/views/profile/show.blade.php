@@ -2,7 +2,7 @@
 
 @section('content')
     @include('users.partials.header', [
-        'title' => __('Hello') . ' '. auth()->user()->name,
+        'title' => __('Hello') . ', '. auth()->user()->first_name,
         'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects or assigned tasks'),
         'class' => 'col-lg-7'
     ])
@@ -61,6 +61,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="py-2" style="background:#f2dede;">
+                            <p class="text-center font-weight-500 m-0">Total Number Of Criminal Case Entry: 1 | Total Number Of Civil Case Entry: 1</p>
+                        </div>
                     </div>
                 </div>
             </div>
