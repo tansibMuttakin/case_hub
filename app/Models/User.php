@@ -22,9 +22,11 @@ class User extends Authenticatable
         'email',
         'phone',
         'district_name',
+        'birth_date',
         'reg_date',
         'last_visit',
         'password',
+        'is_active',
     ];
 
     /**
@@ -45,4 +47,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //relationships
+
+    public function cases(){
+        return $this->hasMany(ParentCase::class);
+    }
 }
