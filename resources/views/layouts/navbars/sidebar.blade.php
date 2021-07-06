@@ -81,8 +81,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Laravel Examples') }}</span>
+                        <i class="fa fa-user" style="color: #f4645f;"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">Users</span>
                     </a>
 
                     <div class="collapse" id="navbar-examples">
@@ -101,13 +101,13 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="ni ni-planet text-blue"></i> Profile
+                    <a class="nav-link" href="{{route('profile.show')}}">
+                        <i class="far fa-address-card text-blue"></i>My Profile
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#navbar-cases" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
+                        <i class="fas fa-file" style="color: #f4645f;"></i>
                         <span class="nav-link-text">Cases</span>
                     </a>
 

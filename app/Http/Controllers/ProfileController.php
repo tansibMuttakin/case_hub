@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * Show the form for editing the profile.
-     *
-     * @return \Illuminate\View\View
-     */
+    public function show(){
+        $user = User::find(auth()->id());
+        return view('profile.show')->with('user', $user);
+    }
+
     public function edit()
     {
         $user = User::find(auth()->id());
@@ -52,7 +52,7 @@ class ProfileController extends Controller
         $user->is_active = $request->is_active;
         $user->save();
 
-        return back()->with('success','Profile Updated Successfully');
+        return redirect()->route('profile.show')->with('success','Profile Updated Successfully');
     }
 
     public function password(Request $request)
