@@ -23,7 +23,7 @@ class CreatePanelLawyersTable extends Migration
             $table->string('date_of_birth');
             $table->string('nationality');
             $table->string('religion');
-            $table->date('date_of_enrollment');
+            $table->date('enrollment_date');
             $table->string('bar_name');
             $table->string('membership_number');
             $table->text('chamber_address');

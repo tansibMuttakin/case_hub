@@ -140,7 +140,7 @@
                     <div class="collapse" id="panel_lawyers">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{route('panleLawyers.index')}}">
                                     All Panel Lawyers
                                 </a>
                             </li>
